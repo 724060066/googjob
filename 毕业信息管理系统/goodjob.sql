@@ -11,7 +11,7 @@
  Target Server Version : 50717
  File Encoding         : utf-8
 
- Date: 04/17/2018 08:38:11 AM
+ Date: 07/15/2022 14:46:40 PM
 */
 
 SET NAMES utf8mb4;
@@ -32,7 +32,14 @@ CREATE TABLE `classes` (
   `status` char(1) COLLATE utf8_bin NOT NULL COMMENT '0:未毕业、1:已毕业',
   `flag` char(1) COLLATE utf8_bin NOT NULL DEFAULT '0' COMMENT '0:未删除、1:已删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+--  Records of `classes`
+-- ----------------------------
+BEGIN;
+INSERT INTO `classes` VALUES ('1', '1703B', null, '2018-10-10', '2018-10-10', '1', '2', '0', '0'), ('3', '1609B', null, '2018-10-10', '2018-10-10', '2', '5', '0', '0');
+COMMIT;
 
 -- ----------------------------
 --  Table structure for `company`
@@ -46,7 +53,14 @@ CREATE TABLE `company` (
   `address` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT '公司地址',
   `flag` char(1) COLLATE utf8_bin NOT NULL DEFAULT '0' COMMENT '0:未删除、1:已删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+--  Records of `company`
+-- ----------------------------
+BEGIN;
+INSERT INTO `company` VALUES ('1', '公司1', '2', '1', null, '1'), ('2', '公司2', '1', '1', '啊啊啊啊啊啊', '0'), ('3', '公司2', '1', '0', '啊烦烦烦', '0'), ('4', 'aa', '3', '1', '啊发发', '0'), ('5', '111', '1', '1', '11', '0');
+COMMIT;
 
 -- ----------------------------
 --  Table structure for `file`
@@ -55,10 +69,17 @@ DROP TABLE IF EXISTS `file`;
 CREATE TABLE `file` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '附件表主键',
   `interviewId` int(11) NOT NULL COMMENT '面试信息表id',
-  `path` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '附件保存路径',
+  `path` varchar(255) COLLATE utf8_bin NOT NULL COMMENT '附件保存路径',
   `uploadTime` datetime NOT NULL COMMENT '附件上传时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+--  Records of `file`
+-- ----------------------------
+BEGIN;
+INSERT INTO `file` VALUES ('1', '2', '../statics/uploadfiles71b711d3-5e64-413f-8078-32bcc7cb1e501523837923497_Personal.jpg', '2018-04-16 08:18:43'), ('2', '2', '../statics/uploadfilese27c31e1-d69c-42e6-92a3-5df76e556ff01523837923511_Personal.jpg', '2018-04-16 08:18:43'), ('3', '3', '../statics/uploadfiles1a18ba13-2a4f-4721-bf69-30ec948759391523837986715_Personal.jpg', '2018-04-16 08:19:46'), ('4', '3', '../statics/uploadfilesc56c8940-23b4-4526-8b39-39af990f8f311523837986720_Personal.jpg', '2018-04-16 08:19:46'), ('5', '4', '../statics/uploadfilesd02e6485-5b7a-48dc-bc0e-255e07719fcb1523838353329_Personal.jpg', '2018-04-16 08:25:53'), ('6', '4', '../statics/uploadfiles2ec49a0b-b738-42b4-8bbd-d128f5daa4bf1523838353335_Personal.jpg', '2018-04-16 08:25:53');
+COMMIT;
 
 -- ----------------------------
 --  Table structure for `interview`
@@ -77,7 +98,33 @@ CREATE TABLE `interview` (
   `remarkStatus` char(1) COLLATE utf8_bin NOT NULL DEFAULT '0' COMMENT '问题是否解决：0、未解决；1、已解决',
   `flag` char(1) COLLATE utf8_bin NOT NULL DEFAULT '0' COMMENT '0:未删除、1:已删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+--  Records of `interview`
+-- ----------------------------
+BEGIN;
+INSERT INTO `interview` VALUES ('1', '1', '1', '1', '2018-04-11', '1', 'aaaa', null, null, '0', '1'), ('2', '1', '1', '2', '2018-04-17', '', null, null, null, '0', '0'), ('3', '1', '1', '2', '2018-04-17', '', null, null, null, '0', '0'), ('4', '2', '1', '3', '2018-04-18', '', null, null, null, '0', '0'), ('5', '2', '1', '3', '2022-07-05', '1', null, null, null, '0', '0'), ('6', '1', '3', '5', '2022-07-05', '1', null, null, null, '0', '0'), ('7', '2', '1', '5', '2022-07-06', '2', '1111', '2022-07-15 08:57:45', '1', '0', '0');
+COMMIT;
+
+-- ----------------------------
+--  Table structure for `jyxx`
+-- ----------------------------
+DROP TABLE IF EXISTS `jyxx`;
+CREATE TABLE `jyxx` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '就业信息表主键',
+  `companyId` int(11) NOT NULL COMMENT '公司表ID',
+  `jysj` date NOT NULL COMMENT '就业时间',
+  `gzgw` varchar(50) COLLATE utf8_bin NOT NULL COMMENT '工作岗位',
+  `yx` decimal(6,2) NOT NULL COMMENT '月薪',
+  `yjtc` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT '业绩提成',
+  `sb` varchar(40) COLLATE utf8_bin DEFAULT NULL COMMENT '社保',
+  `bt` varchar(40) COLLATE utf8_bin DEFAULT NULL COMMENT '补贴',
+  `qtfl` varchar(60) COLLATE utf8_bin DEFAULT NULL COMMENT '其他福利',
+  `remark` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT '备注',
+  `flag` char(1) COLLATE utf8_bin NOT NULL DEFAULT '0' COMMENT '0:未删除、1:已删除',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 --  Table structure for `students`
@@ -103,7 +150,14 @@ CREATE TABLE `students` (
   PRIMARY KEY (`id`),
   KEY `fk_students` (`userId`),
   CONSTRAINT `fk_students` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+--  Records of `students`
+-- ----------------------------
+BEGIN;
+INSERT INTO `students` VALUES ('1', '1', '3', '001', null, null, null, null, null, null, null, null, null, null, '0', '0'), ('3', '2', '1', '002', null, null, null, null, null, null, null, null, null, null, '0', '0');
+COMMIT;
 
 -- ----------------------------
 --  Table structure for `teacher`
@@ -117,7 +171,14 @@ CREATE TABLE `teacher` (
   PRIMARY KEY (`id`),
   KEY `fk_teacher` (`userId`),
   CONSTRAINT `fk_teacher` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+--  Records of `teacher`
+-- ----------------------------
+BEGIN;
+INSERT INTO `teacher` VALUES ('1', '3', '1', '0'), ('2', '4', '2', '0'), ('3', '1', '1', '0'), ('4', '2', '2', '0'), ('5', '6', '1', '0');
+COMMIT;
 
 -- ----------------------------
 --  Table structure for `user`
@@ -132,18 +193,13 @@ CREATE TABLE `user` (
   `role` char(1) COLLATE utf8_bin NOT NULL COMMENT '1:管理员、2:就业专员、3:教师、4:毕业生',
   `flag` char(1) COLLATE utf8_bin NOT NULL DEFAULT '0' COMMENT '0:未删除、1:已删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
---  View structure for `studentinfo`
+--  Records of `user`
 -- ----------------------------
-DROP VIEW IF EXISTS `studentinfo`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `studentinfo` AS select `u`.`id` AS `uId`,`u`.`userCode` AS `userCode`,`u`.`password` AS `password`,`u`.`userName` AS `userName`,`u`.`phone` AS `phone`,`u`.`role` AS `role`,`u`.`flag` AS `uflag`,`s`.`qq` AS `qq`,`s`.`enterTime` AS `enterTime`,`s`.`address` AS `address`,`s`.`homePhone` AS `homePhone`,`s`.`status` AS `status`,`s`.`flag` AS `sflag`,`s`.`id` AS `sid`,`s`.`userId` AS `userId`,`s`.`classesId` AS `classesId`,`s`.`code` AS `code`,`s`.`credentialsNo` AS `credentialsNo`,`s`.`age` AS `age`,`s`.`native` AS `native`,`s`.`dept` AS `dept` from (`user` `u` join `students` `s`) where ((`u`.`id` = `s`.`userId`) and (`u`.`role` = 4));
-
--- ----------------------------
---  View structure for `teacherinfo`
--- ----------------------------
-DROP VIEW IF EXISTS `teacherinfo`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `teacherinfo` AS select `u`.`id` AS `uid`,`u`.`userCode` AS `userCode`,`u`.`password` AS `password`,`u`.`userName` AS `userName`,`u`.`phone` AS `phone`,`u`.`role` AS `role`,`u`.`flag` AS `uflag`,`t`.`id` AS `tid`,`t`.`position` AS `position`,`t`.`flag` AS `tflag` from (`user` `u` join `teacher` `t`) where ((`u`.`id` = `t`.`userId`) and (`u`.`role` = 3));
+BEGIN;
+INSERT INTO `user` VALUES ('1', 'lisi', '111', '李四', null, '4', '0'), ('2', 'zhangsan', '111', '张三', null, '4', '0'), ('3', 'js1', '111', '讲师1', null, '3', '0'), ('4', 'js2', '111', '班主任1', null, '3', '0'), ('6', 'js3', '111', '讲师2', null, '3', '0');
+COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
