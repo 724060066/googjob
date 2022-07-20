@@ -11,7 +11,7 @@
  Target Server Version : 50717
  File Encoding         : utf-8
 
- Date: 07/15/2022 14:46:40 PM
+ Date: 07/20/2022 11:54:44 AM
 */
 
 SET NAMES utf8mb4;
@@ -138,7 +138,7 @@ CREATE TABLE `students` (
   `credentialsNo` varchar(18) COLLATE utf8_bin DEFAULT NULL COMMENT '身份证号',
   `birthday` date DEFAULT NULL COMMENT '生日',
   `age` int(2) DEFAULT NULL COMMENT '年龄',
-  `native` varchar(100) COLLATE utf8_bin DEFAULT NULL COMMENT '籍贯',
+  `nativePlace` varchar(100) COLLATE utf8_bin DEFAULT NULL COMMENT '籍贯',
   `dept` varchar(30) COLLATE utf8_bin DEFAULT NULL COMMENT '所属市场部',
   `qq` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT 'QQ/微信号',
   `enterTime` date DEFAULT NULL COMMENT '入学时间',
